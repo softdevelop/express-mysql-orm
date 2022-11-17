@@ -1,0 +1,12 @@
+extends ../layout/main.pug
+
+block scripts
+  script(src='../js/home.js')
+
+block content
+    h1 Home page
+    p.greetings#people Hello World!
+    ul
+    - var pets = ['cat', 'dog']
+    each petName in pets
+         include pet.pug

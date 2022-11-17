@@ -1,0 +1,19 @@
+extends ../layout/users-layout.pug
+
+block user
+  table.table.table-bordered
+    thead
+      tr
+        th(scope="col") #
+        th(scope="col") Name
+        th(scope="col") Email
+        th(scope="col") Register date
+        th(scope="col") Actions
+    tbody
+      each rc in records
+        tr
+          th(scope="row")= rc['id']
+          td= rc['name']
+          td= rc['email']
+          td= rc['createdAt']
+          td View | Update | Delete

@@ -1,0 +1,20 @@
+html
+  head
+    title My Site - #{title}
+    //block scripts
+    link(href='../bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(href='../css/main.css', rel='stylesheet')
+  body
+    include header.pug
+    main
+      .container
+        block content
+
+    //block foot
+    //  #footer
+    include footer.pug
+
+    //script(src='/jquery.js')
+  script(src='../bootstrap/js/bootstrap.bundle.min.js')
+  script(src='../js/jquery.min.js')
+  block scripts
