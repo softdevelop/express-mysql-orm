@@ -1,0 +1,28 @@
+form
+  .row.mb-3
+    label.col-sm-2.col-form-label(for="inputName") Name
+    .col-sm-10
+      - let nv = (typeof record === 'undefined')? "":  record['name']
+      input.form-control(type="text" name="name" id="inputName" value=nv)
+
+  .row.mb-3
+    label.col-sm-2.col-form-label(for="inputEmail") Email
+    .col-sm-10
+      - let ev = (typeof record === 'undefined')? "":  record['email']
+      input.form-control(type="email" name="email" id="inputEmail" value=nv)
+
+  .row.mb-3
+    label.col-sm-2.col-form-label(for="inputPass") Password
+    .col-sm-10
+      - let pv = (typeof record === 'undefined')? "":  record['pass']
+      input.form-control(type="text" name="pass" id="inputPass" value=pv)
+
+  .row.mb-3
+    label.col-sm-2.col-form-label(for="formFile") Avata
+    .col-sm-10
+      if typeof record !== 'undefined'
+        img(src= avataUrl+record['avata'])
+      input.form-control(type="file" id="formFile" name="avata")
+  .row
+    .offset-md-2
+      button.btn.btn-primary(type="submit") Submit

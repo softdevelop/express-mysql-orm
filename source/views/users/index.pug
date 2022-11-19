@@ -1,7 +1,7 @@
 extends ../layout/users-layout.pug
 
 block css
-  link(href='../css/user.css', rel='stylesheet')
+  link(href='/css/user.css', rel='stylesheet')
 
 block titleBreakcum
   .col-sm-6
@@ -29,7 +29,10 @@ block user
           td
             img(src= avataUrl+rc['avata'])
           td= rc['createdAt']
-          td View | Update | Delete
+          td 
+            a(href='/users/view/'+rc['id']) View | 
+            a(href='/users/update/'+rc['id']) Update | 
+            a(href='/users/del/'+rc['id']) Delete
 
   nav(aria-label="Page navigation example")
     ul.pagination.justify-content-end

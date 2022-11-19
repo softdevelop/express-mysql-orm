@@ -12,5 +12,8 @@ app.get('/test-connect',home.testConnect);
 
 app.get('/users', users.list);
 app.get('/users/view/:id', users.view);
+app.get('/users/add', users.add);
+app.get('/users/update/:id', users.update);
+app.get('/users/del/:id', users.del);
 
 app.listen(3000);

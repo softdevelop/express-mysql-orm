@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 17, 2022 at 12:02 PM
+-- Generation Time: Nov 20, 2022 at 04:05 AM
 -- Server version: 8.0.31-0ubuntu0.20.04.1
--- PHP Version: 8.1.12
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -77,6 +77,7 @@ CREATE TABLE `users` (
   `email` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
   `pass` varchar(16) NOT NULL,
+  `avata` varchar(256) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -85,9 +86,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `name`, `pass`, `createdAt`, `updatedAt`) VALUES
-(1, 'a@gmail.com', 'a', 'abc', '2022-07-22 17:24:15', '2022-11-12 17:55:01'),
-(2, 'b@gmail.com', 'b', 'bc', '2022-07-22 17:24:15', '2022-11-12 17:55:01');
+INSERT INTO `users` (`id`, `email`, `name`, `pass`, `avata`, `createdAt`, `updatedAt`) VALUES
+(1, 'a@gmail.com', 'a', 'abc', 'pscd.jpeg', '2022-07-22 17:24:15', '2022-11-12 17:55:01'),
+(2, 'b@gmail.com', 'b', 'bc', 'HTK.png', '2022-07-22 17:24:15', '2022-11-12 17:55:01');
 
 --
 -- Indexes for dumped tables

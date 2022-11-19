@@ -2,23 +2,41 @@ import User from '../models/User.js';
 import {usersConfig} from '../config/constant.js';
 
 const list = async (req, res) => {
-	console.log(usersConfig);
-	//var records = User.findAll().toArray().then(function(records) { //console.log(records);	});
 	var records = await User.findAll();
 	res.render('./users/index', {'records': records, 'avataUrl': usersConfig.avataUrl});
 }
 
-const view = (req, res) => {
-	console.log('User detail page');
-	var record = User.findByPk(req.params.id).then(function(record) {
-		console.log(record);
-	});
-	res.send("User detail page");
+const view = async (req, res) => {
+	var record = await User.findByPk(req.params.id);
+	res.render('./users/view', {'record': record, 'avataUrl': usersConfig.avataUrl});
+}
+
+const add = async (req, res) => {
+	
+	res.render('./users/add');
+}
+
+const update = async (req, res) => {
+	var record = await User.findByPk(req.params.id);
+	res.render('./users/update', {'record': record, 'avataUrl': usersConfig.avataUrl});
+}
+
+
+const del = async (req, res) => {
+  await User.destroy({
+    where: {
+	  id: eq.params.id
+    }
+  });
+  res.redirect('/users');
 }
 
 const users = { 
 	list: list,
-	view: view
+	view: view,
+	add: add,
+	update: update,
+	del: del
 };
 
 export default users;

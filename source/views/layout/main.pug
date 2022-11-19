@@ -2,8 +2,8 @@ html
   head
     title My Site - #{title}
     //block scripts
-    link(href='../bootstrap/css/bootstrap.min.css', rel='stylesheet')
-    link(href='../css/main.css', rel='stylesheet')
+    link(href='/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/main.css', rel='stylesheet')
     block css
   body
     include header.pug
@@ -16,6 +16,6 @@ html
     include footer.pug
 
     //script(src='/jquery.js')
-  script(src='../bootstrap/js/bootstrap.bundle.min.js')
-  script(src='../js/jquery.min.js')
+  script(src='/bootstrap/js/bootstrap.bundle.min.js')
+  script(src='/js/jquery.min.js')
   block scripts
