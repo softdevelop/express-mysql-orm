@@ -1,19 +1,45 @@
 extends ../layout/users-layout.pug
 
+block css
+  link(href='../css/user.css', rel='stylesheet')
+
+block titleBreakcum
+  .col-sm-6
+    h1 List user
+  .col-sm-6
+    ol.breadcrumb.float-sm-end
+      li.breadcrumb-item
+        a(href="/") Home
+      li.breadcrumb-item.active Users
+
 block user
   table.table.table-bordered
     thead
       tr
         th(scope="col") #
         th(scope="col") Name
-        th(scope="col") Email
+        th(scope="col") Avata
         th(scope="col") Register date
         th(scope="col") Actions
     tbody
       each rc in records
         tr
           th(scope="row")= rc['id']
-          td= rc['name']
-          td= rc['email']
+          td!= 'Name: '+ rc['name'] + '<br> ('+rc['email']+')'
+          td
+            img(src= avataUrl+rc['avata'])
           td= rc['createdAt']
           td View | Update | Delete
+
+  nav(aria-label="Page navigation example")
+    ul.pagination.justify-content-end
+      li.page-item
+        a.page-link(href="#") Previous
+      li.page-item.active
+        a.page-link(href="#") 1
+      li.page-item
+        a.page-link(href="#") 2
+      li.page-item
+        a.page-link(href="#") 3
+      li.page-item
+        a.page-link(href="#") Next

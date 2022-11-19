@@ -1,9 +1,11 @@
 import User from '../models/User.js';
+import {usersConfig} from '../config/constant.js';
 
 const list = async (req, res) => {
+	console.log(usersConfig);
 	//var records = User.findAll().toArray().then(function(records) { //console.log(records);	});
 	var records = await User.findAll();
-	res.render('./users/index', {'records': records});
+	res.render('./users/index', {'records': records, 'avataUrl': usersConfig.avataUrl});
 }
 
 const view = (req, res) => {
