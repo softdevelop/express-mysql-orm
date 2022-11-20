@@ -12,7 +12,8 @@ const view = async (req, res) => {
 }
 
 const add = async (req, res) => {
-	
+	console.log(req);
+	console.log(req.body);
 	res.render('./users/add');
 }
 

@@ -1,4 +1,4 @@
-form
+form(action = "/users/add", method = "POST")
   .row.mb-3
     label.col-sm-2.col-form-label(for="inputName") Name
     .col-sm-10
@@ -15,7 +15,7 @@ form
     label.col-sm-2.col-form-label(for="inputPass") Password
     .col-sm-10
       - let pv = (typeof record === 'undefined')? "":  record['pass']
-      input.form-control(type="text" name="pass" id="inputPass" value=pv)
+      input.form-control(type="password" name="pass" id="inputPass" value=pv)
 
   .row.mb-3
     label.col-sm-2.col-form-label(for="formFile") Avata
@@ -24,5 +24,5 @@ form
         img(src= avataUrl+record['avata'])
       input.form-control(type="file" id="formFile" name="avata")
   .row
-    .offset-md-2
+    .col-sm-10.offset-md-2
       button.btn.btn-primary(type="submit") Submit
