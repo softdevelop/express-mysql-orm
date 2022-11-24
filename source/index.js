@@ -1,6 +1,9 @@
 import express from 'express';
+const multer  = require('multer')
+const uploadAvata = multer({ dest: 'upload/users' })
+
 import home from './controllers/Home.js';
-import users from './controllers/Users.js';
+//import users from './controllers/Users.js';
 
 var app = express();
 app.set('view engine', 'pug');
@@ -12,12 +15,14 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 
 app.get('/', home.index);
 app.get('/test-connect',home.testConnect);
-
+/*
 app.get('/users', users.list);
 app.get('/users/view/:id', users.view);
-app.get('/users/add', users.add);
-app.post('/users/add', users.add);
+app.get('/users/add', uploadAvata.single('avatar'), users.add);
+app.post('/users/add', upload.single('picture'), users.add);
 app.get('/users/update/:id', users.update);
 app.get('/users/del/:id', users.del);
+*/
+require('./routes/userRouters')(app);
 
 app.listen(3000);
