@@ -1,9 +1,11 @@
-const multer  = require('multer')
+import users from '../controllers/Users.js';
+//const multer  = require('multer')
+import multer from 'multer';
 const uploadAvata = multer({ dest: 'upload/users' })
 
-import users from './controllers/Users.js';
-
-module.exports = function(app) {
+//module.exports = function(app) {
+//exports.routes = function(app) {
+export default function(app) {
   // todoList Routes
   app.route('/users')
     .get(users.list)
@@ -18,5 +20,5 @@ module.exports = function(app) {
   app.route('/users/:id')
     .get(users.view)
     .put(users.update)
-    .delete(users.delete);
+    .delete(users.del);
 };

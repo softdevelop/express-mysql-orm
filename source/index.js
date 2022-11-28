@@ -1,6 +1,12 @@
 import express from 'express';
-const multer  = require('multer')
-const uploadAvata = multer({ dest: 'upload/users' })
+
+import userRouers from "./routes/userRouters.js";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
+//const multer  = require('multer');
+//import multer from 'multer';
+//const uploadAvata = multer({ dest: 'upload/users' })
 
 import home from './controllers/Home.js';
 //import users from './controllers/Users.js';
@@ -9,7 +15,6 @@ var app = express();
 app.set('view engine', 'pug');
 app.set('views','./source/views');
 app.use(express.static('./source/public'));
-
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
@@ -23,6 +28,7 @@ app.post('/users/add', upload.single('picture'), users.add);
 app.get('/users/update/:id', users.update);
 app.get('/users/del/:id', users.del);
 */
-require('./routes/userRouters')(app);
+//const userRouers = require("./routes/userRouters.js");
+userRouers(app);
 
 app.listen(3000);
