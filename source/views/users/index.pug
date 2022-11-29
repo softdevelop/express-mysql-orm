@@ -13,7 +13,7 @@ block titleBreakcum
       li.breadcrumb-item.active Users
 
 block user
-  table.table.table-bordered
+  table.table.table-bordered#table-users
     thead
       tr
         th(scope="col") #
@@ -32,7 +32,7 @@ block user
           td 
             a(href='/users/'+rc['id']) View | 
             a(href='/users/update/'+rc['id']) Update | 
-            a(href='/users/del/'+rc['id']) Delete
+            a.del-user(href='/users/del/'+rc['id']) Delete
 
   nav(aria-label="Page navigation example")
     ul.pagination.justify-content-end
@@ -46,3 +46,13 @@ block user
         a.page-link(href="#") 3
       li.page-item
         a.page-link(href="#") Next
+
+  .position-fixed.bottom-0.end-0.p-3(style="z-index: 11")
+    #liveToast.toast.hide(role="alert" aria-live="assertive" aria-atomic="true")
+      .toast-header
+        strong.me-auto Message
+        button.btn-close(data-bs-dismiss="toast" aria-label="Close" type="button")
+      #toast-message.toast-body ...
+
+block scripts
+  script(src='../js/users.js')

@@ -23,14 +23,12 @@ const update = async (req, res) => {
 	res.render('./users/update', {'record': record, 'avataUrl': usersConfig.avataUrl});
 }
 
-
 const del = async (req, res) => {
   await User.destroy({
-    where: {
-	  id: eq.params.id
-    }
+    where: { id: eq.params.id }
   });
-  res.redirect('/users');
+  res.json({message: 'Delete success!'})
+  //res.redirect('/users');
 }
 
 const users = { 

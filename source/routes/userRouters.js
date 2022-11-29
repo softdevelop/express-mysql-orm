@@ -19,6 +19,6 @@ export default function(app) {
     
   app.route('/users/:id')
     .get(users.view)
-    .put(users.update)
+    .post(users.update);
     .delete(users.del);
 };
