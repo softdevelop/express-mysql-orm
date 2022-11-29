@@ -16,6 +16,10 @@ const require = createRequire(import.meta.url);
 import home from './controllers/Home.js';
 //import users from './controllers/Users.js';
 
+const helperFuncs = require("/helpers/helperFuncs");
+
+// assuming the express app is initialized
+app.locals.helperFuncsDelete = helperFuncs.delete
 var app = express();
 app.set('view engine', 'pug');
 app.set('views','./source/views');
