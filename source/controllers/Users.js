@@ -12,8 +12,24 @@ const view = async (req, res) => {
 }
 
 const add = async (req, res) => {
-	console.log(req);
 	console.log(req.body);
+	console.log(req.file);
+
+	if(typeof req.body.email !== 'undefined') {
+		const user = User.build({ 
+			email: req.body.email,
+			name: req.body.name,
+			pass: req.body.pass,
+			avate: req.file.avata
+		});
+
+	  user.save().then(result => {
+	    res.status(201).json({
+	      message: "User registered successfully!",
+	    })
+	    res.redirect('/users');
+	  })
+	}
 	res.render('./users/add');
 }
 
@@ -40,3 +56,18 @@ const users = {
 };
 
 export default users;
+
+/*
+app.post('/add', upload.single('image'), (req, res, next) => {
+  const user = new User({
+    _id: new mongoose.Types.ObjectId(),
+    name: req.body.name,
+    imageURL: req.file.path
+  });
+  user.save().then(result => {
+    res.status(201).json({
+      message: "User registered successfully!",
+    })
+  })
+})
+*/

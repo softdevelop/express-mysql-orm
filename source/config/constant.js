@@ -12,5 +12,5 @@ export default {
 */
 
 export const usersConfig = {
-    avataUrl : '/upload/users/'
+    avataUrl : './public/upload/users/'
 };

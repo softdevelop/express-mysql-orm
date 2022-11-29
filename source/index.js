@@ -16,10 +16,9 @@ const require = createRequire(import.meta.url);
 import home from './controllers/Home.js';
 //import users from './controllers/Users.js';
 
-const helperFuncs = require("/helpers/helperFuncs");
+//const checkFileExisting = require("/helpers/uiHelper");
+import { checkFileExisting } from "./helpers/uiHelper.js";
 
-// assuming the express app is initialized
-app.locals.helperFuncsDelete = helperFuncs.delete
 var app = express();
 app.set('view engine', 'pug');
 app.set('views','./source/views');
@@ -28,6 +27,10 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(methodOverride('_method'));
+
+// assuming the express app is initialized
+app.locals.checkFileExisting = checkFileExisting
+
 /*
 app.use(bodyParser.urlencoded())
 app.use(methodOverride(function (req, res) {
