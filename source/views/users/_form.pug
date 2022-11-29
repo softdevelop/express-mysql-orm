@@ -1,4 +1,6 @@
-form(action = "/users/add", method = "POST")
+form(action = "/users"+ (typeof record === 'undefined'? "": "/"+record['id']+"?_method=PUT"), method="POST")
+  if method=="put"
+    input(type="hidden" name="_method" value="put")
   .row.mb-3
     label.col-sm-2.col-form-label(for="inputName") Name
     .col-sm-10
@@ -9,7 +11,7 @@ form(action = "/users/add", method = "POST")
     label.col-sm-2.col-form-label(for="inputEmail") Email
     .col-sm-10
       - let ev = (typeof record === 'undefined')? "":  record['email']
-      input.form-control(type="email" name="email" id="inputEmail" value=nv)
+      input.form-control(type="email" name="email" id="inputEmail" value=ev)
 
   .row.mb-3
     label.col-sm-2.col-form-label(for="inputPass") Password

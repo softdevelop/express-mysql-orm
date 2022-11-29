@@ -18,6 +18,7 @@ const add = async (req, res) => {
 }
 
 const update = async (req, res) => {
+	console.log(req.body);
 	var record = await User.findByPk(req.params.id);
 	res.render('./users/update', {'record': record, 'avataUrl': usersConfig.avataUrl});
 }

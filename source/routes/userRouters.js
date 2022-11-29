@@ -14,7 +14,7 @@ export default function(app) {
   app.route('/users/add')
     .get(users.add);
 
-  app.route('/users/update')
+  app.route('/users/update/:id')
     .get(users.update);
     
   app.route('/users/:id')
