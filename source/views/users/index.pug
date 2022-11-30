@@ -27,7 +27,7 @@ block user
           th(scope="row")= rc['id']
           td!= 'Name: '+ rc['name'] + '<br> ('+rc['email']+')'
           td
-            img(src= avataUrl+rc['avata'])
+            img(src= checkFileExisting(avataUrl+rc['avata'])? avataUrl+rc['avata']: avataUrl+'no_picture.png'
           td= rc['createdAt']
           td 
             a(href='/users/'+rc['id']) View | 
