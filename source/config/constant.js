@@ -1,3 +1,7 @@
+import path from 'path';
+
+let __dirname = path.resolve(); 
+
 /*
 module.exports = {
     usersConfig: {
@@ -12,5 +16,7 @@ export default {
 */
 
 export const usersConfig = {
-    avataUrl : './public/upload/users/'
+    avataUrl : '/upload/users/'
 };
+
+export const publicURI =  __dirname + '/source/public';

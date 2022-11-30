@@ -3,6 +3,8 @@ extends ../layout/users-layout.pug
 block css
   link(href='/css/user.css', rel='stylesheet')
 
+
+
 block titleBreakcum
   .col-sm-6
     h1 List user
@@ -27,7 +29,8 @@ block user
           th(scope="row")= rc['id']
           td!= 'Name: '+ rc['name'] + '<br> ('+rc['email']+')'
           td
-            img(src= checkFileExisting(avataUrl+rc['avata'])? avataUrl+rc['avata']: avataUrl+'no_picture.png'
+            - console.log(checkFileExisting(avataUrl+rc['avata']))
+            img(src= checkFileExisting(avataUrl+rc['avata'])? avataUrl+rc['avata']: avataUrl+'no_picture.png')
           td= rc['createdAt']
           td 
             a(href='/users/'+rc['id']) View | 
@@ -48,11 +51,8 @@ block user
         a.page-link(href="#") Next
 
   .position-fixed.bottom-0.end-0.p-3(style="z-index: 11")
-    #liveToast.toast.hide(role="alert" aria-live="assertive" aria-atomic="true")
+    div#liveToast.toast.hide(role="alert" aria-live="assertive" aria-atomic="true")
       .toast-header
         strong.me-auto Message
         button.btn-close(data-bs-dismiss="toast" aria-label="Close" type="button")
-      #toast-message.toast-body ...
-
-block scripts
-  script(src='../js/users.js')
+      div.toast-body#toast-message

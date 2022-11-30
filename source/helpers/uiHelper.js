@@ -1,16 +1,25 @@
 //const { promises: Fs } = require('fs')
-import { promises: Fs } from 'fs';
+import fs from 'fs';
+import {publicURI} from '../config/constant.js';
 
-async checkFileExisting = (path) => {  
-  try {
-    await Fs.access(path)
+export const checkFileExisting = (path) => { 
+  let nPath = publicURI + path;
+  console.log(nPath);
+  return fs.existsSync(nPath);
+}
+/*
+export const checkFileExisting = async (path) => { 
+  let nPath = publicURI + path;
+  console.log(nPath);
+  try {    
+    await fs.access(nPath);
     return true
   } catch {
     return false
   }
 }
-
-export checkFileExisting;
+*/
+//export checkFileExisting;
 
 /* Asynchronously Check if a File Exists in Node.js */
 /*
