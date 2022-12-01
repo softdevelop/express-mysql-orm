@@ -3,7 +3,8 @@ extends ../layout/users-layout.pug
 block css
   link(href='/css/user.css', rel='stylesheet')
 
-
+block scripts
+  script(src='./js/users.js')
 
 block titleBreakcum
   .col-sm-6
@@ -29,13 +30,12 @@ block user
           th(scope="row")= rc['id']
           td!= 'Name: '+ rc['name'] + '<br> ('+rc['email']+')'
           td
-            - console.log(checkFileExisting(avataUrl+rc['avata']))
             img(src= checkFileExisting(avataUrl+rc['avata'])? avataUrl+rc['avata']: avataUrl+'no_picture.png')
           td= rc['createdAt']
           td 
             a(href='/users/'+rc['id']) View | 
             a(href='/users/update/'+rc['id']) Update | 
-            a.del-user(href='/users/del/'+rc['id']) Delete
+            a.del-user(href='/users/'+rc['id']) Delete
 
   nav(aria-label="Page navigation example")
     ul.pagination.justify-content-end

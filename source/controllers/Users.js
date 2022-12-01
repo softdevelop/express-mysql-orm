@@ -13,14 +13,14 @@ const view = async (req, res) => {
 
 const add = async (req, res) => {
 	console.log(req.body);
-	console.log(req.file);
 
 	if(typeof req.body.email !== 'undefined') {
+		console.log(req.file);
 		const user = User.build({ 
 			email: req.body.email,
 			name: req.body.name,
 			pass: req.body.pass,
-			avate: req.file.avata
+			//avata: req.file.avata
 		});
 
 	  user.save().then(result => {
@@ -41,7 +41,7 @@ const update = async (req, res) => {
 
 const del = async (req, res) => {
   await User.destroy({
-    where: { id: eq.params.id }
+    where: { id: req.params.id }
   });
   res.json({message: 'Delete success!'})
   //res.redirect('/users');

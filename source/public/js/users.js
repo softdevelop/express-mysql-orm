@@ -1,16 +1,17 @@
-let delUserEls = document.getElementsByClassName("del-user");
-//let delUserEls = document.querySelectorAll("a.del-user");
+//let delUserEls = document.getElementsByClassName("del-user");
+let delUserEls = document.querySelectorAll("a.del-user");
 
 let toastEl = document.getElementById("liveToast");
-let toast =new bootstrap.Toast(toastEl, option)
+let toast =new bootstrap.Toast(toastEl);
 
-delUserEls.addEventListener("click", function(e) {
-	e.stopPropagation();
+[...delUserEls].map(delUserEl => delUserEl.addEventListener("click", function(e) {
+	//e.stopPropagation();
+	e.preventDefault();
 	tc = this;
 	var cf = confirm("Are you sure!");
 	if (cf == true) {
 		url=tc.href;
-		fetch('https://reqres.in/api/users' + id, {	method: 'DELETE' })
+		fetch(url, {	method: 'DELETE' })
 		.then(res => {
 		  	return res.json();
 		})
@@ -23,4 +24,4 @@ delUserEls.addEventListener("click", function(e) {
 		});
 	}
 	return false;
-});
+}));

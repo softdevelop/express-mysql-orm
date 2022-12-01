@@ -4,7 +4,6 @@ import {publicURI} from '../config/constant.js';
 
 export const checkFileExisting = (path) => { 
   let nPath = publicURI + path;
-  console.log(nPath);
   return fs.existsSync(nPath);
 }
 /*
