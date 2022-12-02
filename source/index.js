@@ -26,7 +26,7 @@ app.use(express.static('./source/public'));
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.use(methodOverride('_method'));
+//app.use(methodOverride('_method'));
 
 // assuming the express app is initialized
 app.locals.checkFileExisting = checkFileExisting

@@ -12,6 +12,7 @@ const view = async (req, res) => {
 }
 
 const add = async (req, res) => {
+	let inform = {};
 	if(typeof req.body.email !== 'undefined') {
 		console.log(req.file);
 
@@ -24,43 +25,29 @@ const add = async (req, res) => {
 		});
 
 		if(rs) {
-			console.log(rs);
-			res.status(201).json({
-	      message: "User registered successfully!",
-	    })
-	    res.redirect('/users');
-		}
-		/*
-		const user = User.build({ 
+			res.redirect('/users');
+		} else	inform = "Error when create new record!";
+	}
+	res.render('./users/add', {'inform': inform});
+}
+
+const update = async (req, res) => {
+	let inform = {};
+	var record = await User.findByPk(req.params.id);
+
+	if(typeof req.body.email !== 'undefined') {
+		let rs = await record.update({
 			email: req.body.email,
 			name: req.body.name,
 			pass: req.body.pass,
 			//avata: req.file.avata
 			avata: 'no_picture.png'
 		});
-		let rs = await  user.save();
 		if(rs) {
-			res.status(201).json({
-	      message: "User registered successfully!",
-	    })
-	    res.redirect('/users');
-		}
-		/*
-	  user.save().then(result => {
-	    res.status(201).json({
-	      message: "User registered successfully!",
-	    })
-	    res.redirect('/users');
-	  })
-	  */
+			res.redirect('/users');
+		} else	inform = "Error when update record!"; 
 	}
-	res.render('./users/add');
-}
-
-const update = async (req, res) => {
-	console.log(req.body);
-	var record = await User.findByPk(req.params.id);
-	res.render('./users/update', {'record': record, 'avataUrl': usersConfig.avataUrl});
+	res.render('./users/update', {'record': record, 'inform': inform, 'avataUrl': usersConfig.avataUrl});
 }
 
 const del = async (req, res) => {
@@ -80,18 +67,3 @@ const users = {
 };
 
 export default users;
-
-/*
-app.post('/add', upload.single('image'), (req, res, next) => {
-  const user = new User({
-    _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
-    imageURL: req.file.path
-  });
-  user.save().then(result => {
-    res.status(201).json({
-      message: "User registered successfully!",
-    })
-  })
-})
-*/
