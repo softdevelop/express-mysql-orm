@@ -11,8 +11,8 @@ const view = async (req, res) => {
 	res.render('./users/view', {'record': record, 'avataUrl': usersConfig.avataUrl});
 }
 
-const add = async (req, res) => {
-	let inform = {};
+const add = async (req, res, next) => {
+	let inform;
 	if(typeof req.body.email !== 'undefined') {
 		console.log(req.file);
 
@@ -25,14 +25,16 @@ const add = async (req, res) => {
 		});
 
 		if(rs) {
+			inform = 1;
 			res.redirect('/users');
 		} else	inform = "Error when create new record!";
 	}
-	res.render('./users/add', {'inform': inform});
+	if (inform !== 1)
+		res.render('./users/add', {'inform': inform});
 }
 
-const update = async (req, res) => {
-	let inform = {};
+const update = async (req, res, next) => {
+	let inform ;
 	var record = await User.findByPk(req.params.id);
 
 	if(typeof req.body.email !== 'undefined') {
@@ -44,10 +46,12 @@ const update = async (req, res) => {
 			avata: 'no_picture.png'
 		});
 		if(rs) {
+			inform = 1;
 			res.redirect('/users');
 		} else	inform = "Error when update record!"; 
 	}
-	res.render('./users/update', {'record': record, 'inform': inform, 'avataUrl': usersConfig.avataUrl});
+	if (inform !== 1)
+		res.render('./users/update', {'record': record, 'inform': inform, 'avataUrl': usersConfig.avataUrl});
 }
 
 const del = async (req, res) => {

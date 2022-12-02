@@ -7,13 +7,12 @@ import upload from '../helpers/uploadFile.js'
 //module.exports = function(app) {
 //exports.routes = function(app) {
 export default function(app) {
-  app.post('/users/add', upload.single('avata'));
-
   // todoList Routes
   app.route('/users')
     .get(users.list)
-    .post(users.add);
-    //.post(upload.single('avata'), users.add);
+    .post(upload.single('avata'), users.add);
+    //.post(users.add);
+    //.post(upload, users.add);
 
   app.route('/users/add')
     .get(users.add);

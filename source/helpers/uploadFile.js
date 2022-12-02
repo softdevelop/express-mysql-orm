@@ -11,10 +11,16 @@ let storage = multer.diskStorage({
     const fileName = file.originalname.toLowerCase().split(' ').join('-') + Date.now() + "." + file.mimetype;
   }
 });
-
-var upload = multer({
+/* Test 
+let upload = (req, res, next) => {
+  console.log('Upload middleware');
+  next();
+}
+/**/
+let upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
+    console.log('fileFilter');
     if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
       cb(null, true);
     } else {
