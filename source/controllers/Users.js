@@ -12,23 +12,47 @@ const view = async (req, res) => {
 }
 
 const add = async (req, res) => {
-	console.log(req.body);
-
 	if(typeof req.body.email !== 'undefined') {
 		console.log(req.file);
+
+		let rs = await User.create( {
+			email: req.body.email,
+			name: req.body.name,
+			pass: req.body.pass,
+			//avata: req.file.avata
+			avata: 'no_picture.png'
+		});
+
+		if(rs) {
+			console.log(rs);
+			res.status(201).json({
+	      message: "User registered successfully!",
+	    })
+	    res.redirect('/users');
+		}
+		/*
 		const user = User.build({ 
 			email: req.body.email,
 			name: req.body.name,
 			pass: req.body.pass,
 			//avata: req.file.avata
+			avata: 'no_picture.png'
 		});
-
+		let rs = await  user.save();
+		if(rs) {
+			res.status(201).json({
+	      message: "User registered successfully!",
+	    })
+	    res.redirect('/users');
+		}
+		/*
 	  user.save().then(result => {
 	    res.status(201).json({
 	      message: "User registered successfully!",
 	    })
 	    res.redirect('/users');
 	  })
+	  */
 	}
 	res.render('./users/add');
 }
