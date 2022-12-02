@@ -57,10 +57,34 @@ const add = async (req, res) => {
 	res.render('./users/add');
 }
 
+
 const update = async (req, res) => {
-	console.log(req.body);
+	let inform = {};
 	var record = await User.findByPk(req.params.id);
-	res.render('./users/update', {'record': record, 'avataUrl': usersConfig.avataUrl});
+
+	if(typeof req.body.email !== 'undefined') {
+		/*
+		await record.set( {
+			email: req.body.email,
+			name: req.body.name,
+			pass: req.body.pass,
+			//avata: req.file.avata
+			avata: 'no_picture.png'
+		});
+		let rs = await record.save();
+		*/
+		let rs = await record.update({
+			email: req.body.email,
+			name: req.body.name,
+			pass: req.body.pass,
+			//avata: req.file.avata
+			avata: 'no_picture.png'
+		});
+		if(rs) {
+			res.redirect('/users');
+		} else	inform = "Error when update record!"; 
+	}
+	res.render('./users/update', {'record': record, 'inform': inform, 'avataUrl': usersConfig.avataUrl});
 }
 
 const del = async (req, res) => {
