@@ -14,6 +14,7 @@ const view = async (req, res) => {
 const add = async (req, res, next) => {
 	let inform;
 	if(typeof req.body.email !== 'undefined') {
+		
 		console.log(req.file);
 
 		let rs = await User.create( {
