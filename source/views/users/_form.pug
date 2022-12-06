@@ -1,4 +1,4 @@
-form(action = "/users"+ (typeof record === 'undefined'? "": "/"+record['id']+"?_method=PUT"), method="POST" enctype="multipart/form-data")
+form#userForm(action = "/users"+ (typeof record === 'undefined'? "": "/"+record['id']+"?_method=PUT"), method="POST" enctype="multipart/form-data")
   if method=="put"
     input(type="hidden" name="_method" value="put")
   .row.mb-3
@@ -28,3 +28,5 @@ form(action = "/users"+ (typeof record === 'undefined'? "": "/"+record['id']+"?_
   .row
     .col-sm-10.offset-md-2
       button.btn.btn-primary(type="submit") Submit
+
+script(src='/js/form.js')

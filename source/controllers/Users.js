@@ -1,6 +1,9 @@
 import User from '../models/User.js';
 import {usersConfig} from '../config/constant.js';
 
+import multer from 'multer';
+import upload from '../helpers/uploadFile.js'
+
 const list = async (req, res) => {
 	var records = await User.findAll();
 	res.render('./users/index', {'records': records, 'avataUrl': usersConfig.avataUrl});
@@ -11,13 +14,31 @@ const view = async (req, res) => {
 	res.render('./users/view', {'record': record, 'avataUrl': usersConfig.avataUrl});
 }
 
-const add = async (req, res, next) => {
+const add = async (req, res) => {
+	console.log("User add: ");
 	let inform;
+	console.log(req.body);
+	console.log(req.body.email);
 	if(typeof req.body.email !== 'undefined') {
-		
+		console.log("req.body.emai: ");
+		console.log(req.body.emai);
+		upload(req, res, function (err) {
+		  if (err instanceof multer.MulterError) {
+	      // A Multer error occurred when uploading.
+				console.log("A Multer error occurred when uploading.");
+				console.log(err);
+	    } else if (err) {
+	      // An unknown error occurred when uploading.
+				console.log("An unknown error occurred when uploading.");
+				console.log(err);
+	    }
+
+	    // Everything went fine.
+	  })
+		console.log("req.file: ");
 		console.log(req.file);
 
-		let rs = await User.create( {
+		let rs = await User.create({
 			email: req.body.email,
 			name: req.body.name,
 			pass: req.body.pass,
