@@ -15,26 +15,9 @@ const view = async (req, res) => {
 }
 
 const add = async (req, res) => {
-	console.log("User add: ");
 	let inform;
-	console.log(req.body);
-	console.log(req.body.email);
 	if(typeof req.body.email !== 'undefined') {
-		console.log("req.body.emai: ");
-		console.log(req.body.emai);
-		upload(req, res, function (err) {
-		  if (err instanceof multer.MulterError) {
-	      // A Multer error occurred when uploading.
-				console.log("A Multer error occurred when uploading.");
-				console.log(err);
-	    } else if (err) {
-	      // An unknown error occurred when uploading.
-				console.log("An unknown error occurred when uploading.");
-				console.log(err);
-	    }
-
-	    // Everything went fine.
-	  })
+		
 		console.log("req.file: ");
 		console.log(req.file);
 
@@ -55,7 +38,7 @@ const add = async (req, res) => {
 		res.render('./users/add', {'inform': inform});
 }
 
-const update = async (req, res, next) => {
+const update = async (req, res) => {
 	let inform ;
 	var record = await User.findByPk(req.params.id);
 

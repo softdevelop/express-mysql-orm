@@ -1,8 +1,8 @@
 import users from '../controllers/Users.js';
 //const multer  = require('multer')
-//import multer from 'multer';
+import multer from 'multer';
 
-//import upload from '../helpers/uploadFile.js'
+import upload from '../helpers/uploadFile.js'
 
 //module.exports = function(app) {
 //exports.routes = function(app) {
@@ -10,8 +10,8 @@ export default function(app) {
   // todoList Routes
   app.route('/users')
     .get(users.list)
-    //.post(upload.single('avata'), users.add);
-    .post(users.add);
+    .post(upload.single('avata'), users.add);
+    //.post(users.add);
     //.post(upload, users.add);
 
   app.route('/users/add')
