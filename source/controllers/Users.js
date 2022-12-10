@@ -1,6 +1,9 @@
 import User from '../models/User.js';
 import {usersConfig} from '../config/constant.js';
 
+import multer from 'multer';
+import upload from '../helpers/uploadFile.js'
+
 const list = async (req, res) => {
 	var records = await User.findAll();
 	res.render('./users/index', {'records': records, 'avataUrl': usersConfig.avataUrl});
@@ -11,14 +14,10 @@ const view = async (req, res) => {
 	res.render('./users/view', {'record': record, 'avataUrl': usersConfig.avataUrl});
 }
 
-const add = async (req, res, next) => {
+const add = async (req, res) => {
 	let inform;
 	if(typeof req.body.email !== 'undefined') {
-		
-		console.log("Req.file: ");
-		console.log(req.file);
-
-		let rs = await User.create( {
+		let rs = await User.create({
 			email: req.body.email,
 			name: req.body.name,
 			pass: req.body.pass,
@@ -38,7 +37,7 @@ const add = async (req, res, next) => {
 		res.render('./users/add', {'inform': inform});
 }
 
-const update = async (req, res, next) => {
+const update = async (req, res) => {
 	let inform ;
 	var record = await User.findByPk(req.params.id);
 

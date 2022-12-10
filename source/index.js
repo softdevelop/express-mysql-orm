@@ -31,6 +31,8 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 // assuming the express app is initialized
 app.locals.checkFileExisting = checkFileExisting
 
+//app.use(bodyParser());
+//app.use(bodyParser. text({type: '/'}));
 /*
 app.use(bodyParser.urlencoded())
 app.use(methodOverride(function (req, res) {
