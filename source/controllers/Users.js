@@ -15,6 +15,7 @@ const add = async (req, res, next) => {
 	let inform;
 	if(typeof req.body.email !== 'undefined') {
 		
+		console.log("Req.file: ");
 		console.log(req.file);
 
 		let rs = await User.create( {
@@ -25,6 +26,9 @@ const add = async (req, res, next) => {
 			avata: 'no_picture.png'
 		});
 
+		console.log("Req.file: ");
+		console.log(rs);
+		
 		if(rs) {
 			inform = 1;
 			res.redirect('/users');
