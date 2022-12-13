@@ -10,8 +10,8 @@ export default function(app) {
   // todoList Routes
   app.route('/users')
     .get(users.list)
-    .post(upload.single('avata'), users.add);
-    //.post(users.add);
+    //.post(upload.single('avata'), users.add);
+    .post(users.add);
     //.post(upload, users.add);
 
   app.route('/users/add')

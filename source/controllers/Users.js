@@ -1,8 +1,12 @@
+import fs from 'fs';
+import busboy from 'busboy';
+
 import User from '../models/User.js';
 import {usersConfig} from '../config/constant.js';
 
-import multer from 'multer';
-import upload from '../helpers/uploadFile.js'
+
+//import multer from 'multer';
+//import upload from '../helpers/uploadFile.js';
 
 const list = async (req, res) => {
 	var records = await User.findAll();
@@ -14,9 +18,30 @@ const view = async (req, res) => {
 	res.render('./users/view', {'record': record, 'avataUrl': usersConfig.avataUrl});
 }
 
+const random = (() => {
+  const buf = Buffer.alloc(16);
+  return () => randomFillSync(buf).toString('hex');
+})();
+
 const add = async (req, res) => {
+	//console.log("req.method: ");
+	//console.log(req.method);
+
 	let inform;
-	if(typeof req.body.email !== 'undefined') {
+	//if(typeof req.body.email !== 'undefined') {
+	if(req.method == 'POST') {
+    const bb = busboy({ headers: req.headers });
+    bb.on('avata', (name, file, info) => {
+      //const saveTo = path.join(os.tmpdir(), `busboy-upload-${random()}`);
+      const saveTo = usersConfig.avataUrl.file.originalname.toLowerCase().split(' ').join('-') + Date.now() + "." + file.mimetype;
+      file.pipe(fs.createWriteStream(saveTo));
+
+			console.log("saveTo ");
+			console.log(saveTo);
+    });
+
+		let rs = 1;
+    /*
 		let rs = await User.create({
 			email: req.body.email,
 			name: req.body.name,
@@ -24,13 +49,14 @@ const add = async (req, res) => {
 			//avata: req.file.avata
 			avata: 'no_picture.png'
 		});
-
+		*/
 		console.log("Req.file: ");
 		console.log(rs);
 		
 		if(rs) {
 			inform = 1;
-			res.redirect('/users');
+			//res.redirect('/users');
+			res.render('./users/add', {'inform': inform});
 		} else	inform = "Error when create new record!";
 	}
 	if (inform !== 1)
