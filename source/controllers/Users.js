@@ -9,7 +9,7 @@ import {usersConfig} from '../config/constant.js';
 //import upload from '../helpers/uploadFile.js';
 
 const list = async (req, res) => {
-	var records = await User.findAll();
+	var records = await User.findAll({order: [['id', 'DESC']]});
 	res.render('./users/index', {'records': records, 'avataUrl': usersConfig.avataUrl});
 }
 
@@ -30,6 +30,9 @@ const add = async (req, res) => {
 	let inform;
 	//if(typeof req.body.email !== 'undefined') {
 	if(req.method == 'POST') {
+		console.log("req.method: ");
+		console.log(req.method);
+		console.log(req);
     const bb = busboy({ headers: req.headers });
     bb.on('avata', (name, file, info) => {
       //const saveTo = path.join(os.tmpdir(), `busboy-upload-${random()}`);
@@ -55,8 +58,8 @@ const add = async (req, res) => {
 		
 		if(rs) {
 			inform = 1;
-			//res.redirect('/users');
-			res.render('./users/add', {'inform': inform});
+			res.redirect('/users');
+			//res.render('./users/add', {'inform': inform});
 		} else	inform = "Error when create new record!";
 	}
 	if (inform !== 1)

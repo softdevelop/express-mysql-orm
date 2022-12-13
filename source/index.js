@@ -24,6 +24,7 @@ app.set('view engine', 'pug');
 app.set('views','./source/views');
 app.use(express.static('./source/public'));
 //app.use(express.json()) // for parsing application/json
+
 //app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 //app.use(methodOverride('_method'));
@@ -57,4 +58,4 @@ app.get('/users/del/:id', users.del);
 //const userRouers = require("./routes/userRouters.js");
 userRouers(app);
 
-app.listen(3001);
+app.listen(3000);
