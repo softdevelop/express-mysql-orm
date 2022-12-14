@@ -23,7 +23,7 @@ form#userForm(action = "/users"+ (typeof record === 'undefined'? "": "/"+record[
     label.col-sm-2.col-form-label(for="formFile") Avata
     .col-sm-10
       if typeof record !== 'undefined'
-        img(src= checkFileExisting(avataUrl+record['avata'])? avataUrl+rc['avata']: avataUrl+'no_picture.png')
+        img(src= checkFileExisting(avataUrl+record['avata'])? avataUrl+record['avata']: avataUrl+'no_picture.png')
       input.form-control(type="file" id="formFile" name="avata")
   .row
     .col-sm-10.offset-md-2
