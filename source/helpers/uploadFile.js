@@ -1,14 +1,26 @@
 import multer from 'multer';
 import {usersConfig} from "../config/constant.js";
 
+const rd = (length) => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
-  	console.log('destination');
-    cb(null, usersConfig.avataUrl)
+    cb(null, usersConfig.avataUri)
   },
   filename: function (req, file, cb) {
+    let fext = file.originalname.split(".").pop(); 
+    let fnm  = rd(8) + Date.now() + "." +fext;
   	console.log('filename');
-    const fileName = file.originalname.toLowerCase().split(' ').join('-') + Date.now() + "." + file.mimetype;
+    console.log(fnm);
+    cb(null, fnm); 
   }
 });
 /* Test 

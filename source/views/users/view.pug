@@ -26,6 +26,6 @@ block user
           th(scope="row")= k.charAt(0).toUpperCase()  + k.slice(1)
           td
             if k==='avata'
-              img(src= avataUrl+v)
+              img(src= checkFileExisting(avataUrl+v)? avataUrl+v: avataUrl+'no_picture.png')
             else
               = v

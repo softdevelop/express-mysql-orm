@@ -9,10 +9,6 @@ import userRouers from "./routes/userRouters.js";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
-//const multer  = require('multer');
-//import multer from 'multer';
-//const uploadAvata = multer({ dest: 'upload/users' })
-
 import home from './controllers/Home.js';
 //import users from './controllers/Users.js';
 
@@ -47,14 +43,7 @@ app.use(methodOverride(function (req, res) {
 */
 app.get('/', home.index);
 app.get('/test-connect',home.testConnect);
-/*
-app.get('/users', users.list);
-app.get('/users/view/:id', users.view);
-app.get('/users/add', uploadAvata.single('avatar'), users.add);
-app.post('/users/add', upload.single('picture'), users.add);
-app.get('/users/update/:id', users.update);
-app.get('/users/del/:id', users.del);
-*/
+
 //const userRouers = require("./routes/userRouters.js");
 userRouers(app);
 
